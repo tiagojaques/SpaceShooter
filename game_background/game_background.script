@@ -1,0 +1,53 @@
+function init(self)
+	msg.post('.', 'acquire_input_focus')
+	self.speed = 100
+	self.return_position = 1000
+	self.backgrounds = {'#primary_background','#secondary_background'}
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	for _, background in ipairs(self.backgrounds) do
+		local current_position = go.get_position(background)
+		current_position.y = current_position.y - self.speed * dt
+
+		if current_position.y <= (self.return_position * -1) then
+			if background == self.backgrounds[1] then
+				current_position.y = go.get_position(self.backgrounds[2]).y + self.return_position
+			else
+				current_position.y = go.get_position(self.backgrounds[1]).y + self.return_position
+			end
+		end
+
+		go.set_position(current_position, background)
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	-- Add input-handling code here. The game object this script is attached to
+	-- must have acquired input focus:
+	--
+	--    msg.post(".", "acquire_input_focus")
+	--
+	-- All mapped input bindings will be received. Mouse and touch input will
+	-- be received regardless of where on the screen it happened.
+	-- Learn more: https://defold.com/manuals/input/
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end

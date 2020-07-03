@@ -1,0 +1,24 @@
+function init(self)
+	msg.post('.', 'acquire_input_focus')
+	self.speed = 600
+	self.direction = vmath.vector3(0, 1, 0)
+	self.laser_height = go.get('#laser', 'size.y')
+	self.out_of_screen = 720 + self.laser_height
+end
+
+function update(self, dt)
+	local current_position = go.get_position()
+	
+	if current_position.y > self.out_of_screen then
+		go.delete()
+	end
+
+	local new_position = current_position + (self.direction * self.speed * dt)
+	go.set_position(new_position, self.go_id) 
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end

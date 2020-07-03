@@ -1,0 +1,109 @@
+animations {
+  id: "flight"
+  images {
+    image: "/ship/images/PlayerRed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_NONE
+  fps: 60
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "flight_left"
+  images {
+    image: "/ship/images/PlayerRed_Left.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_NONE
+  fps: 60
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "flight_right"
+  images {
+    image: "/ship/images/PlayerRed_Right.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_NONE
+  fps: 60
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "jet"
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_01_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_02_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_03_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_04_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_05_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_06_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "no_jet"
+  images {
+    image: "/ship/images/jetFlame/no_jet.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_NONE
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "jet_back"
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_01_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_02_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_03_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_04_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_05_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/ship/images/jetFlame/Exhaust_Frame_06_png_processed.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 1
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0
