@@ -82,12 +82,12 @@ instances {
   }
 }
 instances {
-  id: "laser"
-  prototype: "/laser/laser.go"
+  id: "asteroid_belt"
+  prototype: "/asteroid_belt/asteroid_belt.go"
   position {
-    x: 72.0
-    y: 73.0
-    z: 0.9
+    x: 0.0
+    y: 0.0
+    z: 0.0
   }
   rotation {
     x: 0.0

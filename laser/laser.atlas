@@ -5,7 +5,7 @@ animations {
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_NONE
-  fps: 8
+  fps: 5
   flip_horizontal: 0
   flip_vertical: 0
 }
@@ -17,6 +17,10 @@ animations {
   }
   images {
     image: "/laser/images/laserRed09.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/laser/images/laserRed08.png"
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_ONCE_FORWARD

@@ -1,6 +1,6 @@
 function init(self)
 	msg.post('.', 'acquire_input_focus')
-	self.speed = 600
+	self.speed = 1000
 	self.direction = vmath.vector3(0, 1, 0)
 	self.laser_height = go.get('#laser', 'size.y')
 	self.out_of_screen = 720 + self.laser_height
@@ -10,15 +10,24 @@ function update(self, dt)
 	local current_position = go.get_position()
 	
 	if current_position.y > self.out_of_screen then
-		go.delete()
+		go.delete(self.go_id)
 	end
 
-	local new_position = current_position + (self.direction * self.speed * dt)
-	go.set_position(new_position, self.go_id) 
+	if not self.collided then
+		local new_position = current_position + (self.direction * self.speed * dt)
+		go.set_position(new_position, self.go_id)
+	else
+		sprite.play_flipbook('#laser', hash('hit_target'), go.delete())
+		go.delete(self.target)
+	end
 end
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Learn more: https://defold.com/manuals/message-passing/
-	-- Remove this function if not needed
+	if 
+		message_id == hash('contact_point_response') 
+		and message.other_id ~= hash('/ship')
+	then
+		self.collided = true
+		self.target = message.other_id
+	end
 end

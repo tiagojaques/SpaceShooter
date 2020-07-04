@@ -1,0 +1,13 @@
+function init(self)
+	self.factories = {
+		'#aster_1_factory',
+		'#aster_2_factory',
+	}
+end
+function update(self, dt)
+	if math.random(0, 100) == 0 then
+		local postition = vmath.vector3(math.random(100, 1180), 850, 1)
+		local which_facory = math.random(1,2.99)
+		factory.create(self.factories[which_facory], postition)
+	end
+end
