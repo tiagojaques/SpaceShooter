@@ -1,13 +1,35 @@
 function init(self)
-	self.factories = {
+	self.factories_big = {
 		'#aster_1_factory',
 		'#aster_2_factory',
 	}
+
+	self.factories_medium = {
+		'#aster_3_factory',
+		'#aster_4_factory',
+	}
+
+	self.factories_small = {
+		'#aster_5_factory',
+		'#aster_6_factory',
+	}
 end
 function update(self, dt)
-	if math.random(0, 100) == 0 then
+	if math.random(0, 150) == 0 then
 		local postition = vmath.vector3(math.random(100, 1180), 850, 1)
 		local which_facory = math.random(1,2.99)
-		factory.create(self.factories[which_facory], postition)
+		factory.create(self.factories_big[which_facory], postition)
+	end
+
+	if math.random(0, 250) == 0 then
+		local postition = vmath.vector3(math.random(100, 1180), 850, 1)
+		local which_facory = math.random(1,2.99)
+		factory.create(self.factories_medium[which_facory], postition)
+	end
+
+	if math.random(0, 350) == 0 then
+		local postition = vmath.vector3(math.random(100, 1180), 850, 1)
+		local which_facory = math.random(1,2.99)
+		factory.create(self.factories_small[which_facory], postition)
 	end
 end

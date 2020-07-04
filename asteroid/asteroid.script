@@ -5,7 +5,7 @@ function init(self)
 	self.rotation = 0
 	self.rotation_speed = math.random(1, 90)
 	self.scale = math.random(5,13) / 10
-	self.scale_vector = vmath.vector3(self.scale,self.scale,1)
+	self.scale_vector = vmath.vector3(self.scale,self.scale, 1)
 	go.set_scale(self.scale_vector)
 	
 	if go.get('#sprite', 'size.x') > go.get('#sprite', 'size.y') then
