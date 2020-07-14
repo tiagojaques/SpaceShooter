@@ -1,0 +1,41 @@
+function init(self)
+	msg.post('.', 'acquire_input_focus')
+	sound.play('#jet')
+	self.direction_y = 0
+	self.screen_pieces = {256, 512, 768, 1024,1280}
+end
+
+function update(self, dt)
+	if self.direction_y < 0 then
+		--msg.post("#jet", "set_gain", {gain = 0.05})
+		sound.set_gain("#jet", 0.05)
+	elseif self.direction_y > 0 then
+		--msg.post("#jet", "set_gain", {gain = 0.15})
+		sound.set_gain("#jet", 0.15)
+	else
+		--msg.post("#jet", "set_gain", {gain = 0})
+		sound.set_gain("#jet", 0)
+	end 
+	local ship_position = go.get_position('#ship')
+
+	if ship_position.x < self.screen_pieces[1] then
+		sound.set_pan("#jet", -1)
+	elseif  ship_position.x >= self.screen_pieces[1] and ship_position.x < self.screen_pieces[2]  then
+		sound.set_pan("#jet", -0.5)
+	elseif  ship_position.x >= self.screen_pieces[2] and ship_position.x < self.screen_pieces[3]  then
+		sound.set_pan("#jet", 0)
+	elseif  ship_position.x >= self.screen_pieces[3] and ship_position.x < self.screen_pieces[4]  then
+		sound.set_pan("#jet", 0.5)
+	elseif  ship_position.x >= self.screen_pieces[4] and ship_position.x <= self.screen_pieces[5]  then
+		sound.set_pan("#jet", 1)
+	end
+	self.direction_y = 0
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash('move_up') then
+		self.direction_y = 1
+	elseif action_id == hash('move_down') then
+		self.direction_y = -1
+	end
+end

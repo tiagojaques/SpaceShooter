@@ -1,21 +1,28 @@
+require 'modules.ship'
+
 function init(self)
 	self.descend_speed = math.random( 50, 200 )
 	self.direction_rotation = random_rotation()
 	self.direction = vmath.vector3(0, -1, 0)
 	self.rotation = 0
 	self.rotation_speed = math.random(1, 90)
-	self.scale = math.random(5,13) / 10
-	self.scale_vector = vmath.vector3(self.scale,self.scale, 1)
-	go.set_scale(self.scale_vector)
-	
+
 	if go.get('#sprite', 'size.x') > go.get('#sprite', 'size.y') then
-		self.bottom_limit = 0 - go.get('#sprite', 'size.x') * self.scale
+		self.bottom_limit = 0 - go.get('#sprite', 'size.x')
 	else
-		self.bottom_limit = 0 - go.get('#sprite', 'size.y') * self.scale
+		self.bottom_limit = 0 - go.get('#sprite', 'size.y')
 	end
+
 end
 
 function update(self, dt)
+	
+	if self.collided_with_ship then
+		go.delete()
+		ship_lives = ship_lives - 1
+		self.collided_with_ship = false
+	end
+	
 	local current_position = go.get_position()
 	
 	if current_position.y < self.bottom_limit then
@@ -37,4 +44,10 @@ function random_rotation()
 		direction_rotation = random_rotation()
 	end
 	return direction_rotation
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('collision_response') and message.other_id == hash('/ship') then
+		self.collided_with_ship = true
+	end
 end

@@ -1,33 +1,47 @@
+require 'modules.ship'
+
 function init(self)
-	msg.post('.', 'acquire_input_focus')
-	self.speed = 1000
-	self.direction = vmath.vector3(0, 1, 0)
-	self.laser_height = go.get('#laser', 'size.y')
-	self.out_of_screen = 720 + self.laser_height
+    msg.post('.', 'acquire_input_focus')
+    self.speed = 1000
+    self.direction = vmath.vector3(0, 1, 0)
+    self.laser_height = go.get('#laser', 'size.y')
+    self.out_of_screen = 720 + self.laser_height
+    sound.play('#fire', {delay = 0, speed = 1})
+end
+
+function final(self)
+    msg.post("#fire", "stop_sound")
+    -- msg.post("#impact", "stop_sound")
 end
 
 function update(self, dt)
-	local current_position = go.get_position()
-	
-	if current_position.y > self.out_of_screen then
-		go.delete(self.go_id)
-	end
+    local current_position = go.get_position()
 
-	if not self.collided then
-		local new_position = current_position + (self.direction * self.speed * dt)
-		go.set_position(new_position, self.go_id)
-	else
-		sprite.play_flipbook('#laser', hash('hit_target'), go.delete())
-		go.delete(self.target)
-	end
+    if current_position.y > self.out_of_screen then go.delete(self.go_id) end
+
+    if not self.collided then
+        local new_position = current_position +
+                                 (self.direction * self.speed * dt)
+        go.set_position(new_position, self.go_id)
+    else
+        sprite.play_flipbook('#laser', hash('hit_target'), go.delete())
+        sound.play('#impact', {speed = 5, gain = 0.1})
+        points = points + 100
+        go.delete(self.target)
+    end
+
 end
 
 function on_message(self, message_id, message, sender)
-	if 
-		message_id == hash('contact_point_response') 
-		and message.other_id ~= hash('/ship')
-	then
-		self.collided = true
-		self.target = message.other_id
-	end
+    if message_id == hash('contact_point_response') and message.other_id ~=
+        hash('/ship') then
+        self.collided = true
+        self.target = message.other_id
+        --[[
+        print(sender)
+        for k, v in pairs(message) do
+            print(k,v)
+        end
+        ]]--
+    end
 end

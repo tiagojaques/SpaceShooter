@@ -16,4 +16,8 @@ title = SpaceShooter
 
 [physics]
 gravity_y = -10.0
+max_collisions = 248
+
+[sound]
+max_sound_buffers = 128
 
