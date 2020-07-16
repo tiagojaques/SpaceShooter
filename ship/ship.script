@@ -3,7 +3,7 @@ go.property("health", 100)
 function init(self)
 	msg.post('.', 'acquire_input_focus')
 	self.direction = vmath.vector3() -- function returns {x = 0, y = 0, z = 0}
-	self.speed = 600
+	self.speed = 400
 	self.shoot = false
 	self.ship_half_width = go.get('#ship', "size.x") / 2
 	self.ship_half_height = go.get('#ship', "size.y") / 2
