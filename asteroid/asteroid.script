@@ -21,11 +21,16 @@ function update(self, dt)
 		go.delete()
 		ship_lives = ship_lives - 1
 		self.collided_with_ship = false
+
+		if ship_lives < 0 then
+			msg.post('main:/go#switch', 'lose_game')
+		end
 	end
 	
 	local current_position = go.get_position()
 	
 	if current_position.y < self.bottom_limit then
+		points = points - 50
 		go.delete()
 	end
 

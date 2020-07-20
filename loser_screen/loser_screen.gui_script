@@ -1,0 +1,4 @@
+function init(self)
+	local final_score = gui.get_node('final_score')
+	gui.set_text(final_score, 'FINAL SCORE: '..points)
+end

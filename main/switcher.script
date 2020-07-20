@@ -1,0 +1,33 @@
+local function start_game(self)
+	msg.post('go#game', 'load')
+	msg.post('go#game', 'enable')
+end
+
+local function won_game(self)
+	msg.post('go#winner_screen', 'load')
+	msg.post('go#winner_screen', 'enable')
+	msg.post('go#game', 'unload')
+end
+
+local function lose_game(self)
+	msg.post('go#loser_screen', 'load')
+	msg.post('go#loser_screen', 'enable')
+	msg.post('go#game', 'unload')
+end
+
+
+function init(self)
+	print(msg.url())
+	msg.post('.', 'acquire_input_focus')
+	start_game(self)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('won_game') then
+		won_game(self)
+	end
+
+	if message_id == hash('lose_game') then
+		lose_game(self)
+	end
+end

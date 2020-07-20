@@ -1,7 +1,6 @@
 function init(self)
-	-- Add initialization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	local final_score = gui.get_node('final_score')
+	gui.set_text(final_score, 'FINAL SCORE: '..points)
 end
 
 function final(self)
