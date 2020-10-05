@@ -3,5 +3,5 @@
 -- require "modules.ship"
 -- in any script using the functions.
 
-ship_lives = 3
+ship_lives = 1
 points = 0

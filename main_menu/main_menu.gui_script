@@ -1,0 +1,51 @@
+function init(self)
+	msg.post('.', 'acquire_input_focus')
+	-- btn_play_text
+	-- btn_quit_text
+	-- btn_settings
+	-- btn_settings_text
+
+	play_btn = gui.get_node('btn_play')
+	quit_btn = gui.get_node('btn_quit')
+	settings_btn = gui.get_node('btn_settings')
+	btn_play_text = gui.get_node('btn_play_text')
+	btn_quit_text = gui.get_node('btn_quit_text')
+	btn_settings_text = gui.get_node('btn_settings_text')
+	self.is_over = false -- <4>
+	
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	if action_id == nil then --<5>
+		if gui.pick_node(play_btn, action.x, action.y) then -- <6>
+			if not self.is_over then
+				self.is_over = true
+				gui.set_texture(play_btn, "gui_sprites")
+				gui.play_flipbook(play_btn, "btnOn")
+			end
+		else
+			if self.is_over then
+				self.is_over = false
+				gui.set_texture(play_btn, "main_menu")
+				gui.play_flipbook(play_btn, "anim")
+			end
+		end
+	end
+	if action_id == hash('touch') and action.released then
+		if gui.pick_node(play_btn, action.x, action.y) then
+			msg.post('main:/go#switch', 'disable_menu')
+			msg.post('main:/go#switch', 'start_game')
+		elseif gui.pick_node(quit_btn, action.x, action.y) then
+			msg.post('@system:', 'exit', {code = 0})
+		elseif gui.pick_node(settings_btn, action.x, action.y) then
+			msg.post('main:/go#switch', 'disable_menu')
+			msg.post('main:/go#switch', 'start_game')
+		end	
+	end
+end

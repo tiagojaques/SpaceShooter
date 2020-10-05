@@ -19,7 +19,7 @@ embedded_components {
   data: "sound: \"/musics/sound/eighties-action.ogg\"\n"
   "looping: 1\n"
   "group: \"master\"\n"
-  "gain: 0.2\n"
+  "gain: 0.1\n"
   "pan: 0.0\n"
   "speed: 1.0\n"
   ""

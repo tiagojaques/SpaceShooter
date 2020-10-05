@@ -1,6 +1,15 @@
+require 'modules.ship'
+
 local function start_game(self)
+	ship_lives = 1
+	points = 0
 	msg.post('go#game', 'load')
 	msg.post('go#game', 'enable')
+end
+
+local function start_menu(self)
+	msg.post('go#menu', 'load')
+	msg.post('go#menu', 'enable')
 end
 
 local function won_game(self)
@@ -15,19 +24,37 @@ local function lose_game(self)
 	msg.post('go#game', 'unload')
 end
 
+local function disable_menu(self)
+	msg.post('go#menu', 'unload')
+end
+
+local function disable_looser_screen(self)
+	msg.post('go#loser_screen', 'unload')
+end
+
+local function disable_winner_screen(self)
+	msg.post('go#winner_screen', 'unload')
+end
 
 function init(self)
-	print(msg.url())
 	msg.post('.', 'acquire_input_focus')
-	start_game(self)
+	start_menu(self)
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash('won_game') then
 		won_game(self)
-	end
-
-	if message_id == hash('lose_game') then
+	elseif message_id == hash('lose_game') then
 		lose_game(self)
+	elseif message_id == hash('start_game') then
+		start_game(self)
+	elseif message_id == hash('start_menu') then
+		start_menu(self)
+	elseif message_id == hash('disable_looser_screen') then
+		disable_looser_screen(self)
+	elseif message_id == hash('disable_winner_screen') then
+		disable_winner_screen(self)
+	elseif message_id == hash('disable_menu') then
+		disable_menu(self)
 	end
 end
